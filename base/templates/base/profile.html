@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1 class="text-center mt-4">{{user.username}}</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col mt-5">
+            {% include 'base/topics_component.html' %}
+        </div>
+        <div class="col-7 mt-5">
+            {% include 'base/feed_component.html' %}
+        </div>
+        <div class="col mt-5">
+            {% include 'base/activity_component.html' %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

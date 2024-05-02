@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <!-- Topic shortcut -->
+        <div class="col mt-5">
+            {% include 'base/topics_component.html' %}
+        </div>
+        <!-- Main page for chatrooms -->
+        <div class="col-7 mt-5">
+            <h5>{{room_count}} rooms available</h5>
+            <a class="btn btn-primary" href="{% url 'create-room' %}" role="button">Create room</a>
+            <hr>
+            <div>
+                {% include 'base/feed_component.html' %}
+            </div>
+        </div>
+        <!-- Activity feed -->
+        <div class="col mt-5">
+            {% include 'base/activity_component.html' %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
