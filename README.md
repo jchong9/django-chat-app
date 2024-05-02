@@ -5,6 +5,7 @@ A simple chat application using Django that provides real-time messaging and sem
 This chat application was built to teach myself the basics of Django from the following tutorial: https://youtu.be/PtQiiknWUcI?si=08f0u97HtUujSC2d
 
 ## Installation
+Note: You will need [Python 3.0 or above](https://www.python.org/downloads/) to install the project properly
 1. Clone the repository
 
 ```
