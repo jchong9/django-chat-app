@@ -11,34 +11,36 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-8">
+        <div class="col-8 mt-5">
             <h1>{{room.name}}</h1>
             <p>{{room.description}}</p>
             <div class="comment-wrapper">
                 <h3>Conversation</h3>
                 <hr>
-                {% for message in room_msgs %}
-                <div>
-                    {% if request.user == message.user %}
-                    <a href="{% url 'delete-msg' message.id %}">Delete</a>
-                    {% endif %}
-                    <small>@{{message.user}}  {{message.created|timesince}} ago</small>
-                    <p>{{message.body}}</p>
-                    <hr>
+                <div class="overflow-auto p-3 bg-body-tertiary" style="max-height: 25rem;">
+                    {% for message in room_msgs %}
+                    <div>
+                        {% if request.user == message.user %}
+                        <a class="btn btn-secondary btn-sm" href="{% url 'delete-msg' message.id %}">Delete</a>
+                        {% endif %}
+                        <small>@{{message.user}}  {{message.created|timesince}} ago</small>
+                        <p>{{message.body}}</p>
+                        <hr>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
-    
+            <hr>
             {% if request.user.is_authenticated %}
             <div class="comment-form">
                 <form method="POST" action="">
                     {% csrf_token %}
-                    <input type="text" name="body" placeholder="Write your message here...">
+                    <input class="form-control input-lg mb-4" type="text" name="body" placeholder="Write your message here...">
                 </form>
             </div>
             {% endif %}
         </div>
-        <div class="col">
+        <div class="col mt-5">
             <div>
                 <h3>Participants</h3>
                 <hr>
