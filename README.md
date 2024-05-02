@@ -7,19 +7,25 @@ This chat application was built to teach myself the basics of Django from the fo
 ## Installation
 1. Clone the repository
 
+```
 git clone https://github.com/jchong9/django-chat-app.git
+```
 
+2. Go into the main project directory
+```
 cd django-chat-app
+```
 
+3. Run the program on your local host address
+```
 python manage.py runserver
-
-This will run the program on your local host address in the browser.
+```
 
 ## Usage
 To use this application, simply create an account and start chatting!
 
 ## Technologies
 - HTML
-- Bootstrap 4.12
+- [Bootstrap 4.12](https://getbootstrap.com/docs/4.0/getting-started/download/)
 - Django
 - Python
