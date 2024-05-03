@@ -2,11 +2,17 @@
 
 {% block content %}
 
-<div>
+<div class="container bg-light mt-5">
     <form method="POST" action="">
         {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Submit">
+        {% for field in form %}
+        <div class="form-group">
+            <label for="room_name">{{field.label}}</label>
+            <br>
+            {{field}}
+        </div>
+        {% endfor %}
+        <input type="submit" class="btn btn-primary" value="Submit">
     </form>
 </div>
 
