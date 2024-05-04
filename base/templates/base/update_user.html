@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<form method="POST" action="" class="form">
+    {% csrf_token %}
+
+    {% for field in form %}
+    <div class="form-group">
+        <label for="update_field">{{field.label}}</label>
+        {{field}}
+    </div>
+    {% endfor %}
+
+    <input type="submit" class="btn btn-primary" value="Update">
+</form>
+
+{% endblock content %}
