@@ -10,8 +10,12 @@
         </div>
         <!-- Main page for chatrooms -->
         <div class="col-7 mt-5">
-            <h5>{{room_count}} rooms available</h5>
-            <a class="btn btn-primary" href="{% url 'create-room' %}" role="button">Create room</a>
+            <div class="d-flex justify-content-between">
+                <h5>{{room_count}} rooms available</h5>
+                <a class="btn btn-primary" href="{% url 'create-room' %}" role="button">
+                    Create room
+                </a>
+            </div>
             <hr>
             <div>
                 {% include 'base/feed_component.html' %}
