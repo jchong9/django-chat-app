@@ -4,9 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
 from .models import Room, Topic, Message, User
-from .forms import RoomForm, UserForm
+from .forms import RoomForm, UserForm, MyUserCreationForm
 
 
 def login_page(request):
@@ -42,11 +41,10 @@ def logout_user(request):
 
 def register_page(request):
     page = 'register'
-    form = UserCreationForm()
-    context = {'form': form}
+    form = MyUserCreationForm()
     
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = MyUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.username = user.username.lower()
@@ -56,7 +54,7 @@ def register_page(request):
         else:
             messages.error(request, 'An error has occurred during registration')
         
-    return render(request, 'base/login_register.html', context)
+    return render(request, 'base/login_register.html', {'form': form})
     
 
 def home(request):
@@ -69,11 +67,11 @@ def home(request):
         Q(host__username__icontains=q)
         )
     
-    topics = Topic.objects.all() #filter top topics/topics w the most rooms
+    topics = Topic.objects.all()
     room_count = rooms.count()
     room_msgs = Message.objects.filter(
         Q(room__topic__name__icontains=q)
-        ) # change to only following activity feed
+        )
     
     context = {'rooms': rooms, 
                'topics': topics, 
@@ -120,7 +118,7 @@ def create_room(request):
     form = RoomForm()
     topics = Topic.objects.all()
     if request.method == 'POST':
-        topic_name = request.POST.get('topic')
+        topic_name = request.POST.get('topic').strip().replace(" ", "")
         topic, created = Topic.objects.get_or_create(name=topic_name)
         
         Room.objects.create(
@@ -192,7 +190,7 @@ def update_user(request):
     form = UserForm(instance=user)
     
     if request.method == 'POST':
-        form = UserForm(request.POST, instance=user)
+        form = UserForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
             return redirect('user-profile', pk=user.id)

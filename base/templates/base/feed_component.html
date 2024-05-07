@@ -1,17 +1,20 @@
 {% for room in rooms %}
-<div class="container-fluid min-vh-50 bg-light">
-    {% if request.user == room.host %}
-    <a class="btn btn-secondary btn-sm" href="{% url 'update-room' room.id %}">Edit</a>
-    <a class="btn btn-secondary btn-sm" href="{% url 'delete-room' room.id %}">Delete</a>
-    {% endif %}
-    <br>
-
-    <img src="{{room.host.avatar.url}}" width="25" height="25">
-    <a href="{% url 'user-profile' room.host.id %}">@{{room.host.username}}</a>
+<div class="container-fluid min-vh-50 bg-light mb-4 p-3">
+    <div class="d-flex justify-content-between">
+        <div>
+            <img class="rounded-circle" src="{{room.host.avatar.url}}" width="25" height="25">
+            <a href="{% url 'user-profile' room.host.id %}">@{{room.host.username}}</a>
+        </div>
+        <div>
+            {% if request.user == room.host %}
+            <a class="btn btn-secondary btn-sm" href="{% url 'update-room' room.id %}">Edit</a>
+            <a class="btn btn-secondary btn-sm" href="{% url 'delete-room' room.id %}">Delete</a>
+            {% endif %}
+        </div>
+    </div>
     <a href="{% url 'room' room.id %}">
         <h5>{{room.name}}</h5>
     </a>
     <small>{{room.topic.name}}</small>
-    <hr>
 </div>
 {% endfor %}

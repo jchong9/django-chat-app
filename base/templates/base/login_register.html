@@ -26,7 +26,11 @@
     <form method="POST" action="">
         {% csrf_token %}
         
-        {{form.as_p}}
+        {% for field in form %}
+        <label for="field_name">{{field.label}}</label>
+        {{field}}
+        <br>
+        {% endfor %}
 
         <input type="submit" value="Register">
     </form>

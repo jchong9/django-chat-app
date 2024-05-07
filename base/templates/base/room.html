@@ -24,15 +24,20 @@
                         <a class="btn btn-secondary btn-sm" href="{% url 'delete-msg' message.id %}">Delete</a>
                         <br>
                         {% endif %}
-                        <img src="{{message.user.avatar.url}}" width="25" height="25">
-                        <small>@{{message.user.username}}  {{message.created|timesince}} ago</small>
+                        <img class="rounded-circle" src="{{message.user.avatar.url}}" width="25" height="25">
+                        <small>
+                            <a href="{% url 'user-profile' message.user.id %}">
+                                @{{message.user.username}}
+                            </a>
+                            |
+                            {{message.created|timesince}} ago</small>
                         <p>{{message.body}}</p>
                         <hr>
                     </div>
                     {% endfor %}
                 </div>
             </div>
-            <hr>
+            <br>
             {% if request.user.is_authenticated %}
             <div class="comment-form">
                 <form method="POST" action="">
@@ -47,13 +52,13 @@
                 <h3>Participants</h3>
                 <hr>
                 {% for user in participants %}
-                <div>
-                    <img src="{{user.avatar.url}}" width="25" height="25">
-                    <p>
+                <div class="w-50 d-flex justify-content-around">
+                    <img class="rounded-circle" src="{{user.avatar.url}}" width="45" height="45">
+                    <span>
                         {{user.name}}
                         <br>
                         <a href="{% url 'user-profile' user.id %}">@{{user.username}}</a>
-                    </p>
+                    </span>
                 </div>
                 {% endfor %}
             </div>

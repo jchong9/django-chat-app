@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form method="POST" action="" class="form">
+<form method="POST" action="" class="form" enctype="multipart/form-data">
     {% csrf_token %}
 
     {% for field in form %}
