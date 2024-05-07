@@ -5,6 +5,7 @@
     <ul class="nav justify-content-end">
         <li class="nav-item mr-5">
             {% if request.user.is_authenticated %}
+            <img src="{{request.user.avatar.url}}" width="30" height="30">
             <p id="welcome-msg">Welcome {{request.user.username}}</p>
             <a href="{% url 'logout' %}">Logout</a>
             {% else %}

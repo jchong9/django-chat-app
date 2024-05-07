@@ -3,10 +3,12 @@
 
 <div>
     <a href="{% url 'home' %}">All</a>
+    <span>{{topics.count}}</span>
 </div>
 
 {% for topic in topics %}
 <div>
     <a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+    <span>{{topic.room_set.all.count}}</span>
 </div>
 {% endfor %}

@@ -4,7 +4,9 @@
     <a class="btn btn-secondary btn-sm" href="{% url 'update-room' room.id %}">Edit</a>
     <a class="btn btn-secondary btn-sm" href="{% url 'delete-room' room.id %}">Delete</a>
     {% endif %}
+    <br>
 
+    <img src="{{room.host.avatar.url}}" width="25" height="25">
     <a href="{% url 'user-profile' room.host.id %}">@{{room.host.username}}</a>
     <a href="{% url 'room' room.id %}">
         <h5>{{room.name}}</h5>

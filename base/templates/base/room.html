@@ -22,8 +22,10 @@
                     <div>
                         {% if request.user == message.user %}
                         <a class="btn btn-secondary btn-sm" href="{% url 'delete-msg' message.id %}">Delete</a>
+                        <br>
                         {% endif %}
-                        <small>@{{message.user}}  {{message.created|timesince}} ago</small>
+                        <img src="{{message.user.avatar.url}}" width="25" height="25">
+                        <small>@{{message.user.username}}  {{message.created|timesince}} ago</small>
                         <p>{{message.body}}</p>
                         <hr>
                     </div>
@@ -46,7 +48,12 @@
                 <hr>
                 {% for user in participants %}
                 <div>
-                    <p>@{{user.username}}</p>
+                    <img src="{{user.avatar.url}}" width="25" height="25">
+                    <p>
+                        {{user.name}}
+                        <br>
+                        <a href="{% url 'user-profile' user.id %}">@{{user.username}}</a>
+                    </p>
                 </div>
                 {% endfor %}
             </div>
