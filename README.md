@@ -17,10 +17,21 @@ git clone https://github.com/jchong9/django-chat-app.git
 cd django-chat-app
 ```
 
-3. Run the program on your local host address
+3. Make migrations to package api models
+```
+python manage.py makemigrations
+```
+
+4. Create a super user for admin access to the server
+```
+python manage.py createsuperuser
+```
+
+5. Run the program on your local host address
 ```
 python manage.py runserver
 ```
+
 
 ## Usage
 To use this application, simply create an account and start chatting!
